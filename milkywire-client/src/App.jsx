@@ -1,5 +1,5 @@
-import React from 'react'
-import CreatePost from './components/CreatePost'
+import React, { Component } from 'react';
+import CreatePost from './components/CreatePost';
 
 class App extends Component {
   render() {
