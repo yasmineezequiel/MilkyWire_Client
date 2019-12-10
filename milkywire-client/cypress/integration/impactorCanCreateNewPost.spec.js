@@ -1,5 +1,5 @@
 describe('Create new post', () => {
-  
+
   beforeEach(() => {
     cy.server()
     cy.visit('http://localhost:3001')
@@ -9,12 +9,12 @@ describe('Create new post', () => {
     cy.route({
       method: 'POST',
       response: 'fixture:posts.json',
-      url: 'http://localhost:3001'
+      url: 'http://api.example.com'
     })
     cy.get('#create-post-form').within(() => {
       cy.get('#create-title').type('Ocean Cleaning')
-      .get('#create-text').type('Donate and make your impact.')
-      .get('#submit-create-form').click()
+        .get('#create-text').type('Donate and make your impact.')
+        .get('#submit-create-form').click()
     })
   })
 })

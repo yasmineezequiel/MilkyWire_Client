@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { savePosts } from '../modules/requestPosts'
+import { fetchPosts } from '../modules/requestPosts'
 import { Message, Header } from 'semantic-ui-react'
 
 class PostsList extends Component {
@@ -8,12 +8,12 @@ class PostsList extends Component {
   }
 
   componentDidMount() {
-    savePosts()
-    .then(result => {
-      this.setState({
-        posts: result
+    fetchPosts()
+      .then(result => {
+        this.setState({
+          posts: result.posts
+        })
       })
-    })
   }
 
   render() {
@@ -34,9 +34,9 @@ class PostsList extends Component {
       message = (
         <Message style={{ color: 'red' }}>
           <Header
-          as='p'
-          id="message"
-          style={{ color: 'green' }}>
+            as='p'
+            id="message"
+            style={{ color: 'green' }}>
             There are no posts
           </Header>
         </Message>
@@ -44,11 +44,11 @@ class PostsList extends Component {
     }
     return (
       <>
-      {renderPostsList && 
-      <div id="list">
-        {renderPostsList}
-      </div>}
-      {message}
+        {renderPostsList &&
+          <div id="list">
+            {renderPostsList}
+          </div>}
+        {message}
       </>
     )
   }
