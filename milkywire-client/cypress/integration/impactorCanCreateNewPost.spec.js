@@ -1,5 +1,5 @@
 describe('Create new post', () => {
-
+  
   beforeEach(() => {
     cy.server()
     cy.visit('http://localhost:3001')
