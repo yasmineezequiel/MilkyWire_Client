@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { submitPost } from '../modules/requestPost' for fetching api information with axios
+import { submitPost } from '../modules/requestPosts'
 import CreatePostForm from './CreatePostForm'
 import { Header } from 'semantic-ui-react';
 import '../css/create-post.css'
@@ -13,7 +13,7 @@ class CreatePost extends Component {
   submitPostHandler = async (event) => {
     event.preventDefault()
     let { title, text } = event.target 
-    let response = await (title.value, text.value)
+    let response = await submitPost(title.value, text.value)
 
     if (response.message) {
       this.setState({
@@ -33,14 +33,12 @@ class CreatePost extends Component {
 
     if (message) {
       messages = (
-        // <Message className="create-message" size="small" style={{ color: error ? 'red' : 'green' }}>
           <Header
           as='p'
           id="response-message"
           style={{ color: error ? 'red' : 'green' }}>
             {message}
           </Header>
-        // </Message>
       )
     }
 

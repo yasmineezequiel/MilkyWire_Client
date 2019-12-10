@@ -1,21 +1,15 @@
-const submitPost = async (title, text) => {
-  try {
-    let response = await post('posts',
-    { post:
-      {
-        title: title,
-        text: text
-      }
-    }
-  )
-    return {
-      message: response.data.message,
-    }
-  } catch(error) {
-    return {
-      error: error.response.data.error_message
-    }
-  }
+import axios from 'axios';
+
+const apiURL = 'https://api.example.com'
+
+const fetchPosts = async () => {
+  let response = await axios.get(apiURL + 'posts')
+  return response.data.posts
 }
 
-export { submitPost }
+const submitPost = async (title, text) => {
+  let response = await axios.post(apiURL + 'posts') 
+  return response.data.message
+}
+
+export { fetchPosts, submitPost }

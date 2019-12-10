@@ -1,4 +1,13 @@
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { shallow } from 'enzyme';
+import PostsList from '../components/PostsList';
 
-configure({ adapter: new Adapter() }); 
+describe('<PostsList />', () => {
+  it('displays posts list', () => {
+    const describedComponent = shallow(<PostsList />);
+    describedComponent.setState({posts: [{id: 1, title: "Ocean Cleaning", text: "Donate and make your impact"}]})
+    const response = <h1>Ocean Cleaning</h1>
+    console.warn(describedComponent.html())
+    expect(describedComponent.contains(response)).toEqual(true)
+  })
+})
