@@ -1,18 +1,23 @@
 import React from 'react';
 import { Form, Button } from 'semantic-ui-react'
 
-const CreatePostForm = (props) => {
+const CreatePostForm = props => {
+  let edit = props.edit
+  let buttonText = edit ? "Save Updates" : "Submit"
   return (
     <>
-    <Form id="create-post-form" onSubmit={(event) => props.submitPostHandler(event)}>
-      <Form.Group widths='equal'>
+      <Form
+        id={edit ? "edit-post-form" : "create-post-form"}
+        // onSubmit={event => props.submitEditHandler(event)}
+      >
+        <Form.Group widths='equal'>
         <Form.Input
-        label='Title'
-        fluid
-        id="create-title"
-        lable='Title'
-        placeholder='Add title (maximum 255 characters)'
-        name="title"
+          label='Title'
+          fluid
+          id="create-title"
+          lable='Title'
+          placeholder='Add title (maximum 255 characters)'
+          name="title"
         />
       </Form.Group>
       <Form.TextArea
@@ -21,13 +26,12 @@ const CreatePostForm = (props) => {
       placeholder='Add text (maximum 5000 characters)'
       name="text"
       />
-      <Button
+      <Button 
       id="submit-create-form"
-      type="submit"
-      >
-        Submit
+      type="submit">
+        {buttonText}
       </Button>
-    </Form>
+      </Form>
     </>
   )
 }

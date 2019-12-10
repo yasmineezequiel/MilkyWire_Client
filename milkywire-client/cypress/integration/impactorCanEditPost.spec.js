@@ -11,7 +11,7 @@ describe('Impactor can edit post', () => {
       url: 'http://api.example.com',
       response: 'fixture:single_post.json'
     })
-    cy.get('#post-1').click({ force: true })
+    cy.get('#post-2').click({ force: true })
       cy.get('[name="edit-post"]').click()
         cy.get('#edit-post-form').within(() => {
         cy.get('[name="title"]').type('Extensive research')
@@ -30,7 +30,7 @@ describe('Impactor can edit post', () => {
       url: 'http://api.example.com',
       response: 'fixture:single_post.json'
     })
-      cy.get('#post-1').click({ force: true })
+      cy.get('#post-2').click({ force: true })
       cy.get('[name="edit-post"]').click()
       cy.get('#edit-post-form').within(() => {
         cy.get('[name="submit"]').click()
