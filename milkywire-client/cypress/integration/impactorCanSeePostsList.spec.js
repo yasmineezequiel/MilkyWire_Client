@@ -14,8 +14,8 @@ describe('Impactor can view post list', () => {
   
   it("contains post input", () => {
     cy.get('#list h1')
-    .first().should('have.content', 'Ocean Cleaning')
-    .next().should('have.content', 'Donate and make your impact')
+    .first().should('have.title', 'Ocean Cleaning')
+    .next().should('have.text', 'Donate and make your impact')
   })
     
   it('sees message for no post', () => {

@@ -1,4 +1,4 @@
-const fetchPosts = async () => {
+const savePosts = async () => {
   let response = await get('posts')
   return response.data.posts
 }
@@ -23,4 +23,4 @@ const submitPost = async (title, text) => {
   }
 }
 
-export { fetchPosts, submitPost }
+export { savePosts, submitPost }

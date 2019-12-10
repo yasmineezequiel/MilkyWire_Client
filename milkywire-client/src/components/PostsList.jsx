@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchPosts } from '../modules/requestPosts'
+import { savePosts } from '../modules/requestPosts'
 import { Message, Header } from 'semantic-ui-react'
 
 class PostsList extends Component {
@@ -8,7 +8,7 @@ class PostsList extends Component {
   }
 
   componentDidMount() {
-    fetchPosts()
+    savePosts()
     .then(result => {
       this.setState({
         posts: result
