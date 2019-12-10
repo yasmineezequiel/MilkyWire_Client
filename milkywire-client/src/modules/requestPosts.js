@@ -1,3 +1,8 @@
+const fetchPosts = async () => {
+  let response = await get('posts')
+  return response.data.posts
+}
+
 const submitPost = async (title, text) => {
   try {
     let response = await post('posts',
@@ -18,4 +23,4 @@ const submitPost = async (title, text) => {
   }
 }
 
-export { submitPost }
+export { fetchPosts, submitPost }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { submitPost } from '../modules/requestPost' for fetching api information with axios
 import CreatePostForm from './CreatePostForm'
 import { Header } from 'semantic-ui-react';
 import '../css/create-post.css'
