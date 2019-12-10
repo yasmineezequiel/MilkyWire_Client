@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import { Container, Divider, Grid, Image, Card } from "semantic-ui-react";
 
 const PostCard = props => {

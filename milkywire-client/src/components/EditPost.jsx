@@ -53,11 +53,6 @@ class EditPost extends Component {
 
     if (message) {
       messages = (
-        <Message
-          className="create-message"
-          size="small"
-          style={{ color: error ? "red" : "green" }}
-        >
           <Header
             as="p"
             id="response-message"
@@ -65,7 +60,6 @@ class EditPost extends Component {
           >
             {message}
           </Header>
-        </Message>
       );
     }
 
