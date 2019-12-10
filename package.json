@@ -1,8 +1,0 @@
-{
-  "name": "MilkyWire_Client",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/yasmineezequiel/MilkyWire_Client.git",
-  "author": "Yasmine Ezequiel <yasmine.ezequiel@gmail.com>",
-  "license": "MIT"
-}
