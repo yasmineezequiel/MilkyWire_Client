@@ -7,19 +7,18 @@ const CreatePostForm = (props) => {
     <Form id="create-post-form" onSubmit={(event) => props.submitPostHandler(event)}>
       <Form.Group widths='equal'>
         <Form.Input
-        label='Title'
-        fluid
-        id="create-title"
-        lable='Title'
-        placeholder='Add title (maximum 255 characters)'
-        name="title"
+          fluid
+          id="create-title"
+          label='Title'
+          placeholder='Add title (maximum 255 characters)'
+          name="title"
         />
       </Form.Group>
       <Form.TextArea
-      label='Text'
-      id='create-text'
-      placeholder='Add text (maximum 5000 characters)'
-      name="text"
+        id='create-text'
+        label='Text'
+        placeholder='Add text (maximum 5000 characters)'
+        name="text"
       />
       <Button
       id="submit-create-form"

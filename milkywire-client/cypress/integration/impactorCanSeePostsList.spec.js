@@ -11,7 +11,7 @@ describe('Impactor can view post list', () => {
       response: 'fixture:post_list.json'
     })
   })
-  it("contains post content", () => {
+  it("contain post content", () => {
     cy.get('h1')
     .first().should('have','Ocean Cleaning')
     .next().should('have','Donate and make your impact.')
