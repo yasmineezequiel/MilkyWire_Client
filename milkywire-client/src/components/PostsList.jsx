@@ -1,42 +1,37 @@
 import React, { Component } from 'react'
 import { fetchPosts } from '../modules/requestPosts'
-import { Message, Header } from 'semantic-ui-react'
+import { Message, Header, Grid } from 'semantic-ui-react'
+import PostCard from './PostCard'
 
 class PostsList extends Component {
   state = {
     posts: []
   }
 
-  componentDidMount() {
-    fetchPosts()
-      .then(result => {
-        this.setState({
-          posts: result.posts
-        })
-      })
+  async componentDidMount() {
+    let response = await fetchPosts()
+    this.setPosts(response)
   }
 
+  setPosts = (posts) => {
+    this.setState({
+      posts: posts
+    })
+  }
+  
   render() {
     let renderPostsList
     const postData = this.state.posts
     let message
-
     if (postData.length > 0) {
-      renderPostsList = postData.map(post => {
-        return (
-          <div key={post.id}>
-            <h1>{post.title}</h1>
-            <p>{post.text}</p>
-          </div>
-        )
+      renderPostsList = postData.reverse().map(post => {
+        return <PostCard key={post.id} post={post} linked />
       })
-    } else {
+    } 
+    else {
       message = (
-        <Message style={{ color: 'red' }}>
-          <Header
-            as='p'
-            id="message"
-            style={{ color: 'green' }}>
+        <Message style={{ color: "red" }}>
+          <Header as="p" id="message" style={{ color: "#4C5966" }}>
             There are no posts
           </Header>
         </Message>
@@ -44,13 +39,16 @@ class PostsList extends Component {
     }
     return (
       <>
-        {renderPostsList &&
-          <div id="list">
-            {renderPostsList}
-          </div>}
         {message}
+        {renderPostsList && 
+        <Grid columns={3} id="list">
+          <Grid.Row>
+            {renderPostsList}
+          </Grid.Row>
+        </Grid>}
       </>
     )
   }
 }
+
 export default PostsList

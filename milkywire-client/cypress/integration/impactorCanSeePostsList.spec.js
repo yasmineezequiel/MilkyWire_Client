@@ -1,30 +1,25 @@
-describe('Impactor can view post list', () => {
-  beforeEach(() => {
-    cy.server()
-    cy.visit('http://localhost:3001')
-  })
+describe('Impactor user can view a list of posts', () => {
 
-  it('successfully', () => {
-    cy.server()
-    cy.route({
-      method: 'GET',
-      url: 'https://api.example.com/posts',
-      response: 'fixtures:post_list.json'
+  it("contains post content", () => {
+    cy.get('[name="post-1"]').within(() => {
+      cy.get('[name="post-title"]').should('contain', 'Ocean Cleaning')
     })
   })
-  it("contain post content", () => {
-    cy.get('h1')
-    .first().should('have','Ocean Cleaning')
-    .next().should('have','Donate and make your impact.')
 })
 
-  it('sees message for no posts', () => {
+describe('Impactor cannot view posts if there are none', () => {
+
+  beforeEach(() => {
+    cy.server()
     cy.route({
       method: 'GET',
       url: 'https://api.example.com/posts',
-      response: {post_list:[]}
+      response: '{"posts":[]}'
     })
     cy.visit('http://localhost:3001')
+  })
+
+  it('sees message for no posts', () => {
     cy.get("#message").should('contain', 'There are no posts')
   })
 })
