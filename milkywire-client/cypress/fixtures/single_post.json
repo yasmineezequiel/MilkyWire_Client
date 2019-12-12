@@ -1,8 +1,10 @@
 { 
   "post":
+  [
     {
       "id": 1,  
       "title": "Ocean Cleaning", 
       "text": "Donate and make your impact"
     }
+  ]
 }

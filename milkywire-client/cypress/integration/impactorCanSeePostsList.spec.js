@@ -5,10 +5,11 @@ describe('Impactor can view post list', () => {
   })
 
   it('successfully', () => {
+    cy.server()
     cy.route({
       method: 'GET',
-      url: 'http://api.example.com',
-      response: 'fixture:post_list.json'
+      url: 'https://api.example.com/posts',
+      response: 'fixtures:post_list.json'
     })
   })
   it("contain post content", () => {
@@ -20,8 +21,8 @@ describe('Impactor can view post list', () => {
   it('sees message for no posts', () => {
     cy.route({
       method: 'GET',
-      url: 'http://api.example.com',
-      response: '{"post_list":[]}'
+      url: 'https://api.example.com/posts',
+      response: {post_list:[]}
     })
     cy.visit('http://localhost:3001')
     cy.get("#message").should('contain', 'There are no posts')

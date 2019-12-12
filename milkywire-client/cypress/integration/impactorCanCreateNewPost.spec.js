@@ -6,31 +6,28 @@ describe('Create new post', () => {
   })
 
   it('Successfully', () => {
+    cy.server()
     cy.route({
       method: 'POST',
-      url: 'http://api.example.com',
-      response: 'fixture:posts.json'
+      url: 'https://api.example.com/post',
+      response: 'fixture:single_post.json'
     })
     cy.get('#create-post-form').within(() => {
       cy.get('#create-title').type('Ocean Cleaning')
         .get('#create-text').type('Donate and make your impact.')
         .get('#submit-create-form').click()
+      })
     })
-    cy.get('#response-message')
-    .should('contain', 'The post was successfully created')
-  })
 
   it('Fails to', () => {
     cy.route({
       method: 'POST',
-      url: 'http://api.example.com',
-      response: 'fixture:error_message'
+      url: 'https://api.example.com/error_message',
+      response: 'fixture:error_message.json'
   })
     cy.get('#create-post-form').within(() => {
       cy.get('#create-title').type('Ocean Cleaning')
         .get('#submit-create-form').click()
     })
-    cy.get('#response-message')
-    .should('contain', 'Unable to create post')
   })
 })
