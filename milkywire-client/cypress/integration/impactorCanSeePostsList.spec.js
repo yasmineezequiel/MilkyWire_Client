@@ -4,27 +4,26 @@ describe('Impactor can view post list', () => {
   })
 
   it('successfully', () => {
+    cy.visit('http://localhost:3001')
     cy.route({
       method: 'GET',
-      url: 'http://api.example.com',
+      url: 'https://api.example.com/posts',
       response: 'fixture:posts.json'
     })
-    cy.visit('http://localhost:3001')
   })
 
   it("contains post content", () => {
-    cy.get('h1')
+    cy.get('title')
     .first().should('have','Ocean Cleaning')
-    .next().should('have','Donate and make your impact.')
+    .next('text').should('have','Donate and make your impact.')
 })
 
   it('sees message for no posts', () => {
     cy.route({
       method: 'GET',
-      url: 'http://api.example.com',
-      response: '{"posts":[]}'
+      url: 'https://api.example.com/error',
+      response: '{"error":[]}'
     })
-    cy.visit('http://localhost:3001')
     cy.get("#message").should('contain', 'There are no posts')
   })
 })

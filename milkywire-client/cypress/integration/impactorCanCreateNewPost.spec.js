@@ -8,8 +8,8 @@ describe('Create new post', () => {
   it('Successfully', () => {
     cy.route({
       method: 'POST',
-      response: 'fixture:posts.json',
-      url: 'http://api.example.com'
+      url: 'https://api.example.com/posts',
+      response: '{"posts":[]}'
     })
     cy.get('#create-post-form').within(() => {
       cy.get('#create-title').type('Ocean Cleaning')
