@@ -1,6 +1,11 @@
 import axios from 'axios';
 const apiURL = 'https://api.example.com/'
 
+const fetchPosts = async () => {
+  let response = await axios.get(apiURL + 'posts')
+  return response.data.posts
+}
+
 const submitPost = async (title, text) => {
 try {
 let response = await axios.post(apiURL + 'post',
@@ -15,4 +20,4 @@ let response = await axios.post(apiURL + 'post',
   }
 }
 
-export { submitPost }
+export { fetchPosts, submitPost }
