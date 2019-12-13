@@ -9,7 +9,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <PostsList/>
         <CreatePost/>
         <SinglePost/>
         <EditPost/>
@@ -18,4 +17,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

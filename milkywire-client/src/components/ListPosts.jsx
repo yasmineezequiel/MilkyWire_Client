@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { fetchPosts } from '../modules/requestPosts'
+import React, { Component } from 'react';
+import { fetchPosts } from '../modules/requestPosts';
 import { Message, Header } from 'semantic-ui-react'
+import './css/ListPosts.css'
 
-class PostsList extends Component {
+class ListPosts extends Component {
   state = {
     posts: []
   }
@@ -11,21 +12,21 @@ class PostsList extends Component {
     fetchPosts()
       .then(result => {
         this.setState({
-          posts: result.posts
+          posts: result
         })
       })
   }
 
   render() {
-    let renderPostsList
+    let renderListPosts
     const postData = this.state.posts
     let message
 
     if (postData.length > 0) {
-      renderPostsList = postData.map(post => {
+      renderListPosts = postData.map(post => {
         return (
           <div key={post.id}>
-            <h1>{post.title}</h1>
+            <h2>{post.title}</h2>
             <p>{post.text}</p>
           </div>
         )
@@ -38,19 +39,21 @@ class PostsList extends Component {
             id="message"
             style={{ color: 'green' }}>
             There are no posts
-          </Header>
+        </Header>
         </Message>
       )
     }
     return (
       <>
-        {renderPostsList &&
+      <h1>Milkywire</h1>
+        {renderListPosts &&
           <div id="list">
-            {renderPostsList}
-          </div>}
+            {renderListPosts}
+          </div>
+        }
         {message}
       </>
     )
   }
 }
-export default PostsList
+export default ListPosts;
