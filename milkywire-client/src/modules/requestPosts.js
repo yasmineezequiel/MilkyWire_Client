@@ -6,12 +6,13 @@ const fetchPosts = async () => {
   return response.data.posts
 }
 
-const submitPost = async (title, text) => {
+const submitPost = async (title, text, image) => {
 try {
 let response = await axios.post(apiURL + 'post',
   {
     title: title,
-    text: text
+    text: text,
+    image: image
   }
 )
   return response

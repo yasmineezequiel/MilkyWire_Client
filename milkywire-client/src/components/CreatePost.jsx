@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { submitPost } from '../modules/requestPosts'
 import { Form, Button, Container, FormField } from 'semantic-ui-react'
+import ImageUploader from 'react-images-upload'
 
 class CreatePost extends Component {
   state = {
   title: '',
   text: '',
+  image:'',
   renderPostForm: false
 }
 
@@ -20,18 +22,24 @@ inputHandler = (e) => {
   })
 }
 submitPostHandler = async() => {
-  const { title, text } = this.setState
-  let response = await submitPost(title, text)
+  const { title, text, image } = this.setState
+  let response = await submitPost(title, text, image)
 
     if (response.status === 200) {
     this.setState({
-    responseMessage: response.data.message
+      responseMessage: response.data.message
     })
     } else {
     this.setState({
     responseMessage: response.data.error
     })
   }
+}
+
+onAvatarDropHandler = (pictureFiles, pictureDataURL) => {
+  this.setState({
+    image: pictureDataURL
+  })
 }
 
 render() {
@@ -57,9 +65,23 @@ render() {
           <input name="text" id="text-input" placeholder="Text" onBlur={this.inputHandler} />
         </FormField>
         <FormField>
+          <ImageUploader
+          className="file-input"
+          buttonText={"Upload post image (jpg/png)"}
+          withPreview
+          withIcon
+          withLabel={false}
+          onChange={this.onAvatarDropHandler}
+          imgExtension={[".jgn", ".png"]}
+          maxFileSize={5242880}
+          singleImage={true}
+          />
+        </FormField>
+        <FormField>
           <Button id="submit-post" onClick={this.submitPostHandler.bind(this)}>Submit Post</Button>
           <Button id="cancel-post" onClick={this.renderForm}>Cancel</Button>
         </FormField>
+
         </Form>
       </Container>
     </>
