@@ -1,4 +1,15 @@
 describe('Creates a post', () => {
+
+  beforeEach(() => {
+    cy.server()
+    cy.route({
+      method: 'GET',
+      url: 'https://api.example.com/posts',
+      response: 'fixture:posts.json'
+    })
+    cy.visit('http://localhost:3001')
+  })
+
   it('Successfully', () => {
     cy.server()
       cy.route({
