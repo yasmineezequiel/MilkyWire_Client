@@ -1,20 +1,39 @@
-describe('Create new post', () => {
-
-  beforeEach(() => {
-    cy.server()
-    cy.visit('http://localhost:3001')
-  })
-
+describe('Creates a post', () => {
   it('Successfully', () => {
+    cy.server()
     cy.route({
       method: 'POST',
-      url: 'https://api.example.com/posts',
-      response: '{"posts":[]}'
+      url: 'https://api.example.com/post',
+      response: 'fixture:successful_post.json'
     })
-    cy.get('#create-post-form').within(() => {
-      cy.get('#create-title').type('Ocean Cleaning')
-        .get('#create-text').type('Donate and make your impact.')
-        .get('#submit-create-form').click()
+    cy.visit('http://localhost:3001')
+    cy.get('#create-post').click()
+
+    cy.get('#post-form').within(() => {
+      cy.get('#title-input').type('Ocean Cleaning')
+      cy.get('#text-input').type('Donate and make your impact')
+      cy.get('#submit-post').click()
     })
+    cy.get('#response-message')
+    .should('contain', 'The post was successfully created.')
+  })
+
+  it('Fails to', () => {
+    cy.server()
+    cy.route({
+      method: 'POST',
+      url: 'https://api.example.com/post',
+      response: '{ "error": "Unable to create post." }'
+    })
+    cy.visit('http://localhost:3001')
+    cy.get('#create-post').click()
+
+    cy.get('#post-form').within(() => {
+      cy.get('#title-input').type('Ocean Cleaning')
+      cy.get('#text-input').type('')
+      cy.get('#submit-post').click()
+    })
+    cy.get('#response-message')
+    .should('contain', 'Unable to create recipe')
   })
 })
