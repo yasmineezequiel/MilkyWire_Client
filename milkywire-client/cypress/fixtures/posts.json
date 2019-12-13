@@ -1,8 +1,15 @@
 { 
-  "post":
+  "posts":
+  [
     {
       "id": 1,  
       "title": "Ocean Cleaning", 
       "text": "Donate and make your impact"
+    },
+    {
+      "id": 2,  
+      "title": "Milkywire", 
+      "text": "Impactor report"
     }
+  ]
 }
