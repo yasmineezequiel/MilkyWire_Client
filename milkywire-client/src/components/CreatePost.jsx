@@ -29,7 +29,7 @@ submitPostHandler = async() => {
     })
     } else {
     this.setState({
-    responseMessage: response
+    responseMessage: response.data.error
     })
   }
 }
@@ -40,7 +40,7 @@ render() {
 
     if (this.state.responseMessage) {
       responseMessage =
-      <p id= "successful-message">
+      <p id= "message">
         {this.state.responseMessage}
       </p>
     }

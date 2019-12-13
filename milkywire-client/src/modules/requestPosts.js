@@ -11,7 +11,7 @@ let response = await axios.post(apiURL + 'post',
 )
   return response
     } catch (error) {
-  return error.message
+  return error.response
   }
 }
 

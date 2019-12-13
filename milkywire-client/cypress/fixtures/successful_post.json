@@ -1,6 +1,3 @@
 {
-  "successful":
-  {
-    "successful-message": "The post was successfully created."
-  }
+    "message": "The post was successfully created."
 }
