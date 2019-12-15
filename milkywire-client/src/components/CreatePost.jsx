@@ -36,7 +36,7 @@ submitPostHandler = async() => {
   }
 }
 
-onAvatarDropHandler = (pictureFiles, pictureDataURL) => {
+onAvatarDropHandler = (pictureDataURL) => {
   this.setState({
     image: pictureDataURL
   })
@@ -56,6 +56,7 @@ render() {
     if (this.state.renderPostForm) {
     postForm = (
     <>
+    <h1>Milkywire</h1>
       <Container>
         <Form id="post-form">
         <Form.Field>

@@ -45,7 +45,6 @@ class ListPosts extends Component {
     }
     return (
       <>
-      <h1>Milkywire</h1>
         {renderListPosts &&
           <div id="list-posts">
             {renderListPosts}

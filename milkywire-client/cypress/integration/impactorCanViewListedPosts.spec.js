@@ -15,10 +15,5 @@ describe('impactor can view listed posts', () => {
     cy.get('#list-posts')
     .first().should('have', 'Ocean Cleaning')
     .next().should('have', 'Donate and make your impact')
-  })
-    
-  it('contain logo', () => {
-  cy.get('h1')
-  .should('contain', 'Milkywire')
-  })
+  })    
 })
