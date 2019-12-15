@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fetchPosts } from '../modules/requestPosts';
 import { Message, Header } from 'semantic-ui-react'
-import './css/ListPosts.css'
+import '../css/list-posts.css'
 
 class ListPosts extends Component {
   state = {
@@ -47,7 +47,7 @@ class ListPosts extends Component {
       <>
       <h1>Milkywire</h1>
         {renderListPosts &&
-          <div id="list">
+          <div id="list-posts">
             {renderListPosts}
           </div>
         }

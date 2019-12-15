@@ -11,9 +11,14 @@ describe('impactor can view listed posts', () => {
   })
     cy.visit('http://localhost:3001')
 })
-
-  it('contains logo', () => {
-    cy.get('h1')
-    .should('contain', 'Milkywire')
+  it("contain posts content", () => {
+    cy.get('#list-posts')
+    .first().should('have', 'Ocean Cleaning')
+    .next().should('have', 'Donate and make your impact')
+  })
+    
+  it('contain logo', () => {
+  cy.get('h1')
+  .should('contain', 'Milkywire')
   })
 })
