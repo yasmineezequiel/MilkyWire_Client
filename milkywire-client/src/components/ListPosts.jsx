@@ -45,15 +45,14 @@ class ListPosts extends Component {
     }
     return (
       <>
-      <h1>Milkywire</h1>
+        <h1>Milkywire</h1>
         {renderListPosts &&
-          <div id="list">
-            {renderListPosts}
-          </div>
+        <div id="list-posts">
+        {renderListPosts}
+        </div>
         }
         {message}
-      </>
-    )
+      </>    )
   }
 }
 export default ListPosts;

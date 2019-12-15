@@ -10,6 +10,16 @@
       "id": 2,  
       "title": "We want to connect you with people", 
       "text": "Impactor report"
+    },
+    {
+      "id": 3,
+      "title": "Welcome to a new way to make an impact",
+      "text": "We’re building a platform"
+    },
+    {
+      "id": 4,
+      "title": "Preserve wildlife",
+      "text": "Fight climate change"
     }
   ]
 }
