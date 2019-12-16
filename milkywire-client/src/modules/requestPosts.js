@@ -21,4 +21,13 @@ let response = await axios.post(apiURL + 'post',
   }
 }
 
-export { fetchPosts, submitPost }
+const getSpecificPost = async (postId) => {
+  try {
+    let response = await axios.get(apiURL + `posts/${postId}`)
+    return response
+  } catch(error) {
+    return error.response.data.error_message
+  }
+}
+
+export { fetchPosts, submitPost, getSpecificPost  }
