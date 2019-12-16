@@ -10,6 +10,11 @@
       "id": 2,  
       "title": "We want to connect you with people", 
       "text": "Impactor report"
+    },
+    {
+      "id": 3,  
+      "title": "They need your help", 
+      "text": "People who fight climate change"
     }
   ]
 }

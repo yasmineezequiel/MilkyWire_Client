@@ -1,59 +1,92 @@
 import React, { Component } from 'react';
 import { fetchPosts } from '../modules/requestPosts';
-import { Message, Header } from 'semantic-ui-react'
+import { Grid, Container } from 'semantic-ui-react'
+import SpecificPost from './SpecificPost'
 import '../css/list-posts.css'
 
 class ListPosts extends Component {
   state = {
-    posts: []
+    posts: [],
+    errorMessage: null,
+    showPost: false,
+    showPostId: null
+  }
+
+  setErrorMessage = (error) => {
+    this.setState({
+      errorMessage: error
+    })
   }
 
   componentDidMount() {
-    fetchPosts()
-      .then(result => {
-        this.setState({
-          posts: result
-        })
+    this.fetchPosts()
+  }
+
+  async fetchPosts() {
+    let response = await fetchPosts();
+
+    if (response.status === 400) {
+      this.setErrorMessage(response.errorMessage)
+    } else {
+      this.setState({
+        posts: response
       })
+    }
+  }
+
+  showSpecificPostHandler = (postId) => {
+    this.setState({
+      showPost: true,
+      showPostId: postId
+    })
   }
 
   render() {
-    let renderListPosts
-    const postData = this.state.posts
-    let message
+    const posts = this.state.posts
+    let showPost = this.state.showPost
+    let postList
+    let errorMessage
+    let specificPost
 
-    if (postData.length > 0) {
-      renderListPosts = postData.map(post => {
-        return (
-          <div key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.text}</p>
-          </div>
-        )
-      })
-    } else {
-      message = (
-        <Message style={{ color: 'red' }}>
-          <Header
-            as='p'
-            id="message"
-            style={{ color: 'green' }}>
-            There are no posts
-        </Header>
-        </Message>
+    if (this.state.errorMessage) {
+      errorMessage = <p id="error">{this.state.errorMessage}</p>
+    }
+
+    if (showPost === false) {
+      postList = (
+        <Grid.Row>
+          {posts.map(post => {
+            return <Grid.Column onClick={() => { this.showSpecificPostHandler(post.id) }} id={`post_${post.id}`} key={post.id}>
+              <h2>{post.title}</h2>
+              <p>{post.text}</p>
+            </Grid.Column>
+          })}
+        </Grid.Row>
       )
     }
+
+    if (showPost === true) {
+      specificPost = <SpecificPost
+        postId={this.state.showPostId}
+        renderErrorMessage={this.setErrorMessage}
+      />
+    }
+
     return (
       <>
-      <h1>Milkywire</h1>
-        {renderListPosts &&
-          <div id="list-posts">
-            {renderListPosts}
-          </div>
-        }
-        {message}
+        <h1>Milkywire</h1>
+        <hr></hr>
+        <Container className="list-posts">
+          <h2>Imapactores POST</h2>
+          <Grid centered container columns={3} className="latest-posts">
+            {postList}
+            {errorMessage}
+            {specificPost}
+          </Grid>
+        </Container>
       </>
     )
   }
 }
-export default ListPosts;
+
+export default ListPosts
