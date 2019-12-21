@@ -19,4 +19,4 @@ $ yarn run cy:open (for testing the application)
 
 ## Milkywire assignment 
 
-## This prokect was built under MIT license 
+## This project was built under MIT license 
