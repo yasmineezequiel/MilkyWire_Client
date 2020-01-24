@@ -17,6 +17,5 @@ $ yarn start (will direct you to the local host)
 $ yarn run cy:run (for test) 
 $ yarn run cy:open (for testing the application)
 
-## Milkywire assignment 
 
 ## This project was built under MIT license 
