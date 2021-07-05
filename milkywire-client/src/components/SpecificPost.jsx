@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getSpecificPost } from '../modules/requestPosts'
+import { Button } from 'semantic-ui-react'
 
 class SpecificPost extends Component {
 
@@ -27,6 +28,8 @@ class SpecificPost extends Component {
         <div id="specific-post">
           <p id="post-title">{post.title}</p>
           <p id="post-text">{post.text}</p>
+          <Button negative>Delete</Button>
+          <Button color='black'>Edit</Button>
         </div>
       )
     }
